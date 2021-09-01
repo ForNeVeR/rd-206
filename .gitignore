@@ -1,0 +1,6 @@
+/.gradle/
+/build/
+/src/dotnet/.idea
+
+bin/
+obj/

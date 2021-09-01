@@ -1,0 +1,28 @@
+plugins {
+    id 'java'
+
+    // https://www.myget.org/feed/rd-snapshots/package/maven/com.jetbrains.rd/rd-gen
+    id 'com.jetbrains.rdgen' version '0.213.389'
+}
+
+repositories {
+    mavenCentral()
+}
+
+rdgen {
+    def modelDir = new File(projectDir, "src/main/model")
+    def csOutput = new File(projectDir, "src/dotnet/")
+
+    verbose = true
+    sources modelDir
+    hashFolder = "$rootDir/build/rdgen/"
+    packages = "model"
+
+    generator {
+        language = "csharp"
+        transform = "asis"
+        root = "model.DemoModel"
+        namespace = "AvaloniaRider.Model"
+        directory = "$csOutput"
+    }
+}
